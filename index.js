@@ -1,12 +1,13 @@
 const {Client} = require('node-scp')
+require('dotenv').config()
 
 async function test() {
     try {
         const client = await Client({
-            host: '181.191.18.82',
+            host: process.env.HOST,
             port: 22,
-            username: 'root',
-            password: 'zoRiAOsG'
+            username: process.env.HOST_USERNAME,
+            password: process.env.PASSWORD
         })
         const result = await client.list('/var/www/')
         for (const key in result) {
